@@ -1,6 +1,6 @@
 /* CFS Sales Academy — offline shell. Cache version is the content hash, so a
    redeploy replaces the cached app instead of serving a stale one forever. */
-const C = 'cfsway-3164606f3b81';
+const C = 'cfsway-7862d42f9725';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => {
   self.skipWaiting();
