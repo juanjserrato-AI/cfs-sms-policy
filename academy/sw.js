@@ -1,0 +1,23 @@
+/* CFS Sales Academy — offline shell. Cache version is the content hash, so a
+   redeploy replaces the cached app instead of serving a stale one forever. */
+const C = 'cfsway-3164606f3b81';
+const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
+self.addEventListener('install', e => {
+  self.skipWaiting();
+  e.waitUntil(caches.open(C).then(c => c.addAll(FILES).catch(() => {})));
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(
+    ks.filter(k => k !== C).map(k => caches.delete(k))
+  )).then(() => self.clients.claim()));
+});
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(hit => hit || fetch(e.request).then(res => {
+      const copy = res.clone();
+      caches.open(C).then(c => c.put(e.request, copy)).catch(() => {});
+      return res;
+    }).catch(() => caches.match('./index.html')))
+  );
+});
