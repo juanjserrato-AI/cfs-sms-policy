@@ -33,7 +33,7 @@ header{background:linear-gradient(100deg,var(--blue-lift),var(--blue));color:#ff
 .in{max-width:620px;margin:0 auto}
 h1{font-size:26px;line-height:1.15;margin:0 0 6px;font-weight:700;letter-spacing:-.015em}
 header p{margin:0;opacity:.9;font-size:15px}
-main{max-width:620px;margin:0 auto;padding:22px 20px calc(60px + env(safe-area-inset-bottom,0px))}
+main{max-width:620px;margin:0 auto;padding:22px 20px calc(150px + env(safe-area-inset-bottom,0px))}
 .card{background:var(--surface);border:1px solid var(--rule);border-radius:12px;padding:20px 22px;margin-bottom:16px}
 .card h2{font-size:17px;margin:0 0 10px;font-weight:650}
 .card p{margin:0 0 .8em;color:var(--mute);font-size:15.5px}
@@ -45,8 +45,10 @@ li b{color:var(--ink)}
 .go{background:var(--surface);border:2px solid var(--orange);border-radius:12px;padding:24px 22px;margin-bottom:16px;text-align:center}
 .go .lab{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-deep);font-weight:700;margin-bottom:10px}
 .go p{color:var(--mute);font-size:14.5px;margin:12px 0 0}
+.go p.big{font-size:17px;color:var(--ink);margin:0}
+.go p.big b{color:var(--orange-deep)}
 .mini{font-size:13.5px;color:var(--faint);text-align:center;margin-top:24px;line-height:1.5}
-elevenlabs-convai{display:block;min-height:120px}
+
 </style>
 </head>
 <body>
@@ -77,8 +79,8 @@ elevenlabs-convai{display:block;min-height:120px}
 
   <div class="go">
     <div class="lab">Cuando estés listo</div>
-    <elevenlabs-convai agent-id="agent_2901m1whjmk1fvttyer4m52gbm5j"></elevenlabs-convai>
-    <p>Dale al botón y permite el micrófono. Si te interrumpen, cierra y vuelve a entrar cuando puedas.</p>
+    <p class="big">Abajo, a la derecha, está el botón <b>naranja</b>.<br>Dale a <b>Empezar la sesión</b> y permite el micrófono.</p>
+    <p>Si te interrumpen, cierra y vuelve a entrar cuando puedas. No pasa nada.</p>
   </div>
 
   <div class="card">
@@ -90,6 +92,7 @@ elevenlabs-convai{display:block;min-height:120px}
 
 </main>
 
+<elevenlabs-convai agent-id="agent_2901m1whjmk1fvttyer4m52gbm5j"></elevenlabs-convai>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 </body>
 </html>
