@@ -1,6 +1,6 @@
 /* CFS Sales Academy — offline shell. Cache version is the content hash, so a
    redeploy replaces the cached app instead of serving a stale one forever. */
-const C = 'cfsway-356dbeba5ec7';
+const C = 'cfsway-654d414b14ee';
 const FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', e => {
   self.skipWaiting();
@@ -13,6 +13,11 @@ self.addEventListener('activate', e => {
 });
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  // Only the app shell is ours to cache. Voice practice pulls the ElevenLabs widget and
+  // its audio from other origins: caching those would serve a stale widget, and the
+  // index.html fallback below would hand a failed script request the whole app as its
+  // body. Let anything cross-origin go straight to the network.
+  if (new URL(e.request.url).origin !== self.location.origin) return;
   e.respondWith(
     caches.match(e.request).then(hit => hit || fetch(e.request).then(res => {
       const copy = res.clone();
